@@ -27,7 +27,9 @@ export const makeMainRoutes = () => {
       <Router history={history}>
         <div className='contenedor'>
           <Header/>
-          <Navegacion/>
+          <Navegacion
+            auth={auth}
+          />
 
           <Route exact path="/" render={(props) => (
             <Productos
@@ -35,7 +37,9 @@ export const makeMainRoutes = () => {
             />
           )}/>
           <Route exact path="/nosotros" component={Nosotros} />
-          <Route exact path="/contacto" component={Contacto} />
+          <Route exact path="/contacto" render={(props) => {
+            return (<Contacto auth={auth} {...props}/>)
+          }}/>
 
           <Route exact path="/productos" render={ (props) => (
             <Productos
